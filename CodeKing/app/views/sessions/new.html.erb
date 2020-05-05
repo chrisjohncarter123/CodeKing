@@ -1,0 +1,12 @@
+
+
+<%= form_for @user do |f| %>
+  <%= f.collection_select :name, User.all, :name, :name %>
+  
+    <br>
+    <label>Password</label><br>
+    <%= text_field_tag :'password' %><br>
+
+  <%= f.submit "Sign In" user_path(@user)%>
+<% end %>
+
