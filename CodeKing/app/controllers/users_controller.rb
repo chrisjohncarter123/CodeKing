@@ -1,51 +1,49 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
 
-  #before_action :require_login
-  #skip_before_action :require_login, only: [:new, :create, :show]
+  def index
+    @users = User.all
+  end
 
-
-def index
-
-end
+  def show
+  end
 
   def new
     @user = User.new
   end
 
-  def show
-    @user = User.find(params[:id])
+  def edit
   end
 
   def create
+    @user = User.new(user_params)
 
-    if(User.exists?(params[:user][:name]))
-      #redirect
-    
+    if @user.save
+      redirect_to @user, notice: 'User created.'
     else
-      @user = User.create(user_params)
-      session[:user_id] = @user.id
-      redirect_to user_path(@user)
+      render :new 
     end
+  end
 
-    
+  def update
+    if @user.update(user_params)
+      redirect_to @user, notice: 'User updated.'
+    else
+      render :edit
+    end
+  end
 
+  def destroy
+    @user.destroy
+    redirect_to users_url, notice: 'User deleted.'
   end
 
   private
- 
-  def user_params
-    params.require(:user).permit(
-      :name,
-      :height,
-      :happiness,
-      :nausea,
-      :tickets,
-      :password)
-  end
+    def set_user
+      @user = User.find(params[:id])
+    end
 
-  def require_login
-    return head(:forbidden) unless session.include? :user_id
-  end
-
-
+    def user_params
+      params.require(:user).permit(:email, :password, :password_confirmation)
+    end
 end

@@ -1,12 +1,11 @@
-
-
-<%= form_for @user do |f| %>
-  <%= f.collection_select :name, User.all, :name, :name %>
-  
-    <br>
-    <label>Password</label><br>
-    <%= text_field_tag :'password' %><br>
-
-  <%= f.submit "Sign In" user_path(@user)%>
+<h1>Sessions#new</h1>
+<p>Find me in app/views/sessions/new.html.erb</p>
+<p id=”alert”><%= alert %></p>
+<h1>Login</h1>
+<%= form_tag sessions_path do |form| %>
+    <%= label_tag :email %>
+    <%= text_field_tag :email %>
+    <%= label_tag :password %>
+    <%= password_field_tag :password %>
+    <%= submit_tag "Log In" %>
 <% end %>
-
