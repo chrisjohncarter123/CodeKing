@@ -1,4 +1,15 @@
 
 <p id=”notice”><%= notice %></p>
-<h1>Example</h1>
+<h1>Home</h1>
 <p>Home Page Body...</p>
+
+<%= link_to 'New Repo', new_repo_path %></td>
+
+<% @user.repos.each do |user| %>
+  <tr>
+    <td><%= user.email %></td>
+    <td><%= link_to 'Show', user %></td>
+    <td><%= link_to 'Edit', edit_user_path(user) %></td>
+    <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>

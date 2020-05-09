@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  #skip_before_action :require_login, only: [:index]
 
   def index
-    @users = User.all
+    redirect_to new_user_path
   end
 
   def show
