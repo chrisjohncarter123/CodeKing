@@ -1,6 +1,27 @@
 
-<p>Name: <%= @repo.name %> </p>
+
+<ul>
+    <li>
+    <ul>
+    <li><em>Name: </em> <%= @repo.name %></li>
+    <li><em>All Pushes: </em>
+        <ul>
+            <% Push.all.where(repo_id: @repo.id).each do |push| %>
+                <li><em>Message</em> <%= push.message %></li>
+                <li><em>Content</em> <%= push.content %></li>
+
+            <% end %>
+        </ul>
+    </li>
+    
+    </ul>
+    </li>
+</ul>
+<%= link_to "New Push", new_repo_push_path(@repo) %>
+<br>
+<br>
 
 <%= link_to 'Edit', edit_repo_path(@repo) %>
-<%= link_to 'Back', repos_path %>
+<%= link_to 'Destroy', @repo, method: :delete, data: { confirm: 'Are you sure?' } %>
+<%= link_to 'Repos Index', repos_path %>
 

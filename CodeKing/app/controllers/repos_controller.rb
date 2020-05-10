@@ -8,6 +8,8 @@ class ReposController < ApplicationController
         if !current_user
             redirect_to new_user_path
         end
+
+        @created_repos = created_repos
         
     end
     def new
@@ -17,6 +19,8 @@ class ReposController < ApplicationController
 
     def create
         @repo = Repo.new(repo_params)
+        @repo.creator_id = current_user.id
+        
 
         if @repo.save
           redirect_to @repo, notice: 'Repo created.'

@@ -1,0 +1,10 @@
+<h1>Push Index for Repo <%= @repo.name %></h1>
+
+
+<ul>
+<% @pushes.each do |push| %>
+    <li>
+        <%= render 'push', push: push %>
+    </li>
+<% end %>
+</ul>

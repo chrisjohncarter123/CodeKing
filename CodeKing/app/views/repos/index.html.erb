@@ -1,9 +1,16 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Users</h1>
+<h1>All Repos Created by You:</h1>
 
 
 <p id="notice"><%= notice %></p>
 <br>
 
-<%= link_to 'New User', new_user_path %>
+
+<ul>
+    <% @created_repos.each do |repo| %>
+        <%= render 'repo', repo: repo %>
+    <% end %>
+</ul>
+
+<%= link_to 'New Repo', new_repo_path %>

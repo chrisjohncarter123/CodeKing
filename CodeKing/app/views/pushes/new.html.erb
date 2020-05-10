@@ -1,0 +1,33 @@
+
+
+<%= form_for @push do |f| %>
+    <br>
+    <label>Repo</label><br>
+
+    <%if params[:repo_id] %>
+    <p>
+        <em>Current Repo ID: </em> <%= params[:repo_id] %>
+    </p>
+
+    <p>
+
+        <em>Current Repo Name: </em> <%= Repo.find(params[:repo_id]).name %>
+    </p>
+    <%= f.hidden_field :repo_id %>
+        
+
+    <%else%>
+        <%= f.collection_select :message, Repo.all, :name, :name %>
+        
+    <%end%>
+
+    <br>
+    <label>Message</label><br>
+    <%= text_field_tag :'message' %><br>
+
+     <br>
+    <label>Content</label><br>
+    <%= text_field_tag :'content' %><br>
+
+  <%= submit_tag "Create Push" %>
+<% end %>

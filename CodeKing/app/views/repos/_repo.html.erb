@@ -1,0 +1,29 @@
+<br>
+    <li>
+    <ul>
+        <li><em>Name: </em> <%= repo.name %></li>
+        <li><em>All Pushes:</em> </li>
+    
+        <% Push.all.where(repo_id: repo.id).each do |push| %>
+            <ul>
+                <li><em>Pushed By:</em>
+                    <% if User.find(push.user_id).email == current_user.email %>
+                        you
+                    <% else %>
+                        <%= User.find(push.user_id).email %>
+                    <% end %>
+                    
+                </li>
+                <li><em>Message: </em> <%= push.message %></li>
+                <li><em>Content: </em> <%= push.content %></li>
+            </ul>
+            <br>
+        <% end %>
+   
+   
+    
+        <li><%= link_to 'Show', repo %></li>
+        <li><%= link_to 'Edit', edit_repo_path(repo) %></li>
+        <li><%= link_to 'Destroy', repo, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+    </ul>
+    </li>

@@ -21,6 +21,7 @@ class UsersController < ApplicationController
 
     if @user.save
       redirect_to @user, notice: 'User created.'
+      session[:user_id] = @user.id
     else
       render :new 
     end

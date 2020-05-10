@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :repos
+  resources :repos do
+    # nested resource for pushes
+    resources :pushes, only: [:show, :index, :new]
+  end
   resources :pushes
   root "home#index"
   

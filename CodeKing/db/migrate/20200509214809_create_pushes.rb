@@ -4,6 +4,7 @@ class CreatePushes < ActiveRecord::Migration[5.2]
       t.integer :repo_id
       t.integer :user_id
       t.string :message
+      t.string :content
 
       t.timestamps
     end
