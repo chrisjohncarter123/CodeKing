@@ -10,8 +10,6 @@ class PushesController < ApplicationController
         else
             @pushes = Push.all
         end
-
-        
     end
 
     def show
@@ -21,9 +19,9 @@ class PushesController < ApplicationController
 
     def new
         @push = Push.new
-        @user = current_user
-        @created_repos = Repo.where(creator_id: @user.id)
-        @created_pushes = Push.where(user_id: @user.id)
+        #@user = current_user
+        #@created_repos = Repo.where(creator_id: @user.id)
+        #@created_pushes = Push.where(user_id: @user.id)
     end
 
 
@@ -31,30 +29,18 @@ class PushesController < ApplicationController
     def create
     
         @push = Push.new
-        @push.message = params[:message]
-        @push.content = params[:content]
-        
+
+        @push.repo_id = push_params[:repo_id]
         @push.user_id = current_user.id
-       # byebug
 
-        if params[:repo_id]
-            @repo = Repo.find_by(id: params[:repo_id])
-
-        else
-            @repo = Repo.find_by(name: params[:push][:message])
-        end
-
-        @push.repo_id = @repo.id
-       
-        
-
+        @push.message = push_params[:message]
+        @push.content = push_params[:content]
+    
         if @push.save
           redirect_to @push, notice: 'Push created.'
         else
           render :new 
         end
-
-
 
     end
 
@@ -64,6 +50,8 @@ class PushesController < ApplicationController
 
 
     def push_params
-        params.require(:push).permit(:message, :content, :repo_id)
+        params.require(:push).permit(:repo_id, :user_id, :message, :content)
     end
+
+
 end

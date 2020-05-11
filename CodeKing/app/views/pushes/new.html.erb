@@ -1,34 +1,31 @@
 
 <%= render 'partials/errors', f: @push %>
 
-<%= form_for @push do |f| %>
-    <br>
-    <label>Repo</label><br>
+<%= form_with(model: @push, local: true) do |f| %>
+    <label>Repo</label>
 
-    <%if params[:repo_id] %>
     <p>
-        <em>Current Repo ID: </em> <%= params[:repo_id] %>
+    <em>Repo Name: </em><%= Repo.find(params[:repo_id]).name %>
+    </p>
+      
+    <%= f.hidden_field :repo_id, value: Repo.find(params[:repo_id]).id %>
+
+    <p>
+    <%= f.label :message %>
+    </p>
+    <p>
+    <%= f.text_field :message %>
     </p>
 
     <p>
-
-        <em>Current Repo Name: </em> <%= Repo.find(params[:repo_id]).name %>
+    <%= f.label :content %>
     </p>
-    <%= f.hidden_field :repo_id %>
-        
+    <p>
+    <%= f.text_field :content %>
+    </p>
 
-    <%else%>
-        <%= f.collection_select :message, Repo.all, :name, :name %>
-        
-    <%end%>
-
-    <br>
-    <label>Message</label><br>
-    <%= text_field_tag :'message' %><br>
-
-     <br>
-    <label>Content</label><br>
-    <%= text_field_tag :'content' %><br>
-
-  <%= submit_tag "Create Push" %>
+    <p>
+    <%= f.submit %>
+    </p>
+    
 <% end %>
