@@ -1,0 +1,8 @@
+  <% if f.errors.any? %>
+      <h1><%= pluralize(f.errors.count, "error") %></h1>
+      <ul>
+      <% f.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+  <% end %>

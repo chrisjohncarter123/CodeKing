@@ -1,9 +1,16 @@
 
 
+<%= render 'partials/errors', f: @repo %>
+
 <%= form_with(model: @repo, local: true) do |form| %>
 
+    <p>
     <%= form.label :name %>
+    </p>
+    <p>
     <%= form.text_field :name %>
-
+    </p>
+    <p>
     <%= form.submit %>
+    </p>
 <% end %>
