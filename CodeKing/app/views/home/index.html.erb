@@ -3,18 +3,18 @@
 <h3><%= link_to 'New Repo', new_repo_path %></h3>
 
 <h2>Public Repos Created by All Users (name is 'a'):</h2>
+
 <ul>
     <% Repo.name_is_a.each do |repo| %>
-
         <li><em>Creator: </em><%= User.find(repo.creator_id).email %></li>
         <%= render 'repos/repo', repo: repo %>
     <% end %>
 </ul>
 
 <h2>Public Repos Created by All Users:</h2>
+
 <ul>
     <% Repo.all.each do |repo| %>
-
         <li><em>Creator: </em><%= User.find(repo.creator_id).email %></li>
         <%= render 'repos/repo', repo: repo %>
     <% end %>
@@ -31,9 +31,8 @@
 
 
 <h2>Your Pushes:</h2>
+
 <ul>
-
-
 <% @created_pushes.each do |push| %>
     <li>
         <%= render 'pushes/push', push: push %>
