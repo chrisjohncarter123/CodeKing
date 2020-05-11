@@ -3,7 +3,7 @@
     <ul>
         <li><em>Name: </em> <%= repo.name %></li>
         <li><%= link_to "New Push", new_repo_push_path(repo) %></li>
-        <li><%= link_to "Push Index", repo_push_path %></li>
+        <li><%= link_to "Push Index", repo_pushes_path(repo) %></li>
         <li><%= link_to 'Show', repo %></li>
         <li><%= link_to 'Edit', edit_repo_path(repo) %></li>
         <li><%= link_to 'Destroy', repo, method: :delete, data: { confirm: 'Are you sure?' } %></li>
@@ -21,7 +21,7 @@
                 </li>
                 <li><em>Message: </em> <%= push.message %></li>
                 <li><em>Content: </em> <%= push.content %></li>
-                 <li><%= link_to 'Show', push_path(push) %></li>
+                <li><%= link_to "Show", repo_push_path(repo, push) %></li>
        
                 <br>
             </ul>
