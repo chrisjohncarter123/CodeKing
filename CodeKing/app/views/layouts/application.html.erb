@@ -9,18 +9,23 @@
   </head>
   <body>
       <div class="navigation">
-        <a href="<%= root_url %>"/>Home</a>
+        <ul> 
+          <% if current_user %>
+            <li>Logged in as <%= current_user.email %></li>
+            <li><%= link_to "Home", root_url %></li>
+            <li><%= link_to 'Edit Account', edit_user_path(current_user) %></li>
+            <li><%= link_to 'Log Out', logout_path %></li>
+          <% else %>
+            <li><%= link_to 'Sign Up', signup_path %></li>
+            <li><%= link_to 'Log In', login_path %></li>
+          <% end %>
+        </ul>
       </div>
-
-    <% if current_user %>
-      Logged in as <%= current_user.email %>.
-      <%= link_to 'Log Out', logout_path %>
-    <% else %>
-      <%= link_to 'Sign Up', signup_path %> or 
-      <%= link_to 'Log In', login_path %>
-    <% end %>
+   
 
     <!-- content -->
+
+    <p id=”notice”><%= notice %></p>
     <div class="container"  role="main">
       <%= yield %>
     </div>

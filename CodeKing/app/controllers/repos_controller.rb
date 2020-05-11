@@ -35,6 +35,20 @@ class ReposController < ApplicationController
 
     end
 
+    def edit
+
+    end
+
+    def update
+        if @repo.update(repo_params)
+            redirect_to @repo, notice: 'Repo updated.'
+        else
+            render :edit
+        end
+
+
+    end
+
     private
 
 

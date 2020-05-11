@@ -33,7 +33,7 @@ class PushesController < ApplicationController
         @push.content = params[:content]
         
         @push.user_id = current_user.id
-        byebug
+       # byebug
 
         if params[:repo_id]
             @repo = Repo.find_by(id: params[:repo_id])

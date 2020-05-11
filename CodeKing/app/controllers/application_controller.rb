@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  helper_method :current_user, :require_login, :created_repos, :created_pushes
+  helper_method :current_user, :require_login, :set_user, :created_repos, :created_pushes
   def current_user
     if session[:user_id]
       @current_user ||= User.find(session[:user_id])
@@ -11,7 +11,11 @@ class ApplicationController < ActionController::Base
 
 
   def require_login
-    return head(:forbidden) unless session.include? :user_id
+    return redirect_to new_user_path unless session.include? :user_id
+  end
+
+  def set_user
+    @user = User.find(params[:id])
   end
 
   def created_repos

@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  #skip_before_action :require_login, only: [:index]
+  before_action :require_login
+  skip_before_action :require_login, only: [:new, :create]
 
   def index
     redirect_to new_user_path
@@ -13,8 +14,7 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  def edit
-  end
+
 
   def create
     @user = User.new(user_params)
@@ -25,6 +25,9 @@ class UsersController < ApplicationController
     else
       render :new 
     end
+  end
+
+  def edit
   end
 
   def update
@@ -41,9 +44,7 @@ class UsersController < ApplicationController
   end
 
   private
-    def set_user
-      @user = User.find(params[:id])
-    end
+
 
     def user_params
       params.require(:user).permit(:email, :password, :password_confirmation)
