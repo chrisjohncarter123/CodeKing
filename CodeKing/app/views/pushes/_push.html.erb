@@ -1,9 +1,9 @@
 
 <ul>
     <li><em>Repo Name: </em><%= Repo.find(push.repo_id).name %>
+    <li><em>Creator Email: </em><%= User.find(push.user_id).email %>
     <li><em>Message: </em><%= push.message %>
     <li><em>Content: </em><%= push.content %>
     <li><%= link_to 'Show', push %></li>
-    <li><%= link_to 'Edit', edit_user_path(push) %></li>
     <li><%= link_to 'Destroy', push, method: :delete, data: { confirm: 'Are you sure?' } %></li>
 </ul>

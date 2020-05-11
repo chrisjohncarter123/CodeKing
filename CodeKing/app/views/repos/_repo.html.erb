@@ -2,6 +2,10 @@
     <li>
     <ul>
         <li><em>Name: </em> <%= repo.name %></li>
+        <li><%= link_to "New Push", new_repo_push_path(repo) %></li>
+        <li><%= link_to 'Show', repo %></li>
+        <li><%= link_to 'Edit', edit_repo_path(repo) %></li>
+        <li><%= link_to 'Destroy', repo, method: :delete, data: { confirm: 'Are you sure?' } %></li>
         <li><em>All Pushes:</em> </li>
     
         <% Push.all.where(repo_id: repo.id).each do |push| %>
@@ -16,13 +20,14 @@
                 </li>
                 <li><em>Message: </em> <%= push.message %></li>
                 <li><em>Content: </em> <%= push.content %></li>
+                 <li><%= link_to 'Show', push_path(push) %></li>
+       
+                <br>
             </ul>
         <% end %>
    
    
     
-        <li><%= link_to 'Show', repo %></li>
-        <li><%= link_to 'Edit', edit_repo_path(repo) %></li>
-        <li><%= link_to 'Destroy', repo, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+        
     </ul>
     </li>

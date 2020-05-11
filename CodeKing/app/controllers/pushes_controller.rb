@@ -14,6 +14,10 @@ class PushesController < ApplicationController
         
     end
 
+    def show
+        @push = Push.find(params[:id])
+    end
+
 
     def new
         @push = Push.new
@@ -22,9 +26,7 @@ class PushesController < ApplicationController
         @created_pushes = Push.where(user_id: @user.id)
     end
 
-    def show
-        @push = Push.find(params[:id])
-    end
+
 
     def create
     
@@ -55,6 +57,8 @@ class PushesController < ApplicationController
 
 
     end
+
+
 
     private
 
