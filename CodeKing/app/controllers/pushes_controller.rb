@@ -35,11 +35,14 @@ class PushesController < ApplicationController
 
         @push.message = push_params[:message]
         @push.content = push_params[:content]
-    
+
+        byebug
+
+
         if @push.save
           redirect_to @push, notice: 'Push created.'
         else
-          render :new 
+            redirect_to :new 
         end
 
     end

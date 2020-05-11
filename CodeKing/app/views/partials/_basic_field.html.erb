@@ -1,0 +1,14 @@
+<div class="field<%= ' field_with_errors' if base.errors[field].any? %>">
+<p>
+    <%= form.label field %>
+</p>
+<p>
+    <%if !local_assigns[:password].nil? && local_assigns[:password] == true%>
+        <%= form.password_field :password %>
+        
+    <%else%>
+        <%= form.text_field field %>
+        
+    <%end%>
+</p>
+</div>

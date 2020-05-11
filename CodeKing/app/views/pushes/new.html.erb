@@ -1,31 +1,22 @@
 
 <%= render 'partials/errors', f: @push %>
 
-<%= form_with(model: @push, local: true) do |f| %>
+<%= form_with(model: @push, local: true) do |form| %>
     <label>Repo</label>
 
     <p>
     <em>Repo Name: </em><%= Repo.find(params[:repo_id]).name %>
     </p>
       
-    <%= f.hidden_field :repo_id, value: Repo.find(params[:repo_id]).id %>
+    <%= form.hidden_field :repo_id, value: Repo.find(params[:repo_id]).id %>
+
+
+    <%= render 'partials/basic_field', form:form, base: @push, field: :message %>
+    <%= render 'partials/basic_field', form:form, base: @push, field: :content %>
+ 
 
     <p>
-    <%= f.label :message %>
-    </p>
-    <p>
-    <%= f.text_field :message %>
-    </p>
-
-    <p>
-    <%= f.label :content %>
-    </p>
-    <p>
-    <%= f.text_field :content %>
-    </p>
-
-    <p>
-    <%= f.submit %>
+    <%= form.submit %>
     </p>
     
 <% end %>
