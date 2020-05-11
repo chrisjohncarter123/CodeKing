@@ -4,11 +4,9 @@
 
 <h3><%= link_to 'New Push', new_push_path %></h3>
 
-has_more_than_1_push
-
-<h2>Public Repos Created by All Users (name starts with a):</h2>
+<h2>Public Repos Created by All Users (name is 'a'):</h2>
 <ul>
-    <% Repo.all.starts_with_a.each do |repo| %>
+    <% Repo.name_is_a.each do |repo| %>
 
         <li><em>Creator: </em><%= User.find(repo.creator_id).email %></li>
         <%= render 'repos/repo', repo: repo %>
