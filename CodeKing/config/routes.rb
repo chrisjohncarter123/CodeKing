@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   resources :pushes, only: [:show, :index, :new, :create]
 
   #omniauth
-  get '/auth/facebook/callback' => 'sessions#create'
+  #get '/auth/facebook/callback' => 'sessions#create'
+  #get '/auth/github/callback' => 'sessions#create'
+  get '/auth/:provider/callback' => 'sessions#create'
 
 end
