@@ -47,7 +47,8 @@ class PushesController < ApplicationController
             if @push.save
                 redirect_to @push, notice: 'Push created.'
             else
-                render :new 
+                redirect_to new_repo_push_path(push_params[:repo_id])
+                # :new 
             end
         end
 

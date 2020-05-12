@@ -2,6 +2,10 @@
 <%= render 'partials/errors', f: @push %>
 
 <%= form_with(model: @push, local: true) do |f| %>
+
+    <%= f.hidden_field :user_id, value: current_user.id %>
+
+
     <label>Repo</label>
 
     <p>
@@ -11,19 +15,10 @@
     <%= f.hidden_field :repo_id, value: Repo.find(params[:repo_id]).id %>
 
 
-    <p>
-    <%= f.label :message %>
-    </p>
-    <p>
-    <%= f.text_field :message %>
-    </p>
 
-    <p>
-    <%= f.label :content %>
-    </p>
-    <p>
-    <%= f.text_field :content %>
-    </p>
+    <%= render 'partials/basic_field', form:f, base: @push, field: :message %>
+    <%= render 'partials/basic_field', form:f, base: @push, field: :content %>
+
 
     <p>
     <%= f.submit %>

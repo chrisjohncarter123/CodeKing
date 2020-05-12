@@ -9,5 +9,5 @@ class Repo < ApplicationRecord
         where(name: "a")
 
     end
-    
+
 end
