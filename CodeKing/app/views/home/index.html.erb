@@ -26,6 +26,7 @@
 <ul>
     <% @created_repos.each do |repo| %>
         <%= render 'repos/repo', repo: repo %>
+        <li><%= link_to 'Destroy', repo, method: :delete, data: { confirm: 'Are you sure?' } %></li>
     <% end %>
 </ul>
 

@@ -4,5 +4,6 @@
     <li><em>Creator Email: </em><%= User.find(push.user_id).email %>
     <li><em>Message: </em><%= push.message %>
     <li><em>Content: </em><%= push.content %>
-    <li><%= link_to 'Show', push %></li>
+    <li><%= link_to 'Show Push', push %></li>
+    <li><%= link_to 'Show Repo', repo_path(Repo.find(push.repo_id))%></li>
 </ul>

@@ -49,6 +49,16 @@ class ReposController < ApplicationController
 
     end
 
+    def destroy
+        byebug
+        repo.destroy
+        redirect_to repos_path
+
+
+    end
+
+    
+
     
 
     private

@@ -8,7 +8,7 @@ class PushesController < ApplicationController
             @pushes = @repo.pushes
            
         else
-            @pushes = Push.all
+            @pushes = created_pushes
         end
     end
 
@@ -27,22 +27,28 @@ class PushesController < ApplicationController
 
 
     def create
-    
-        @push = Push.new
 
-        @push.repo_id = push_params[:repo_id]
-        @push.user_id = current_user.id
-
-        @push.message = push_params[:message]
-        @push.content = push_params[:content]
-
-        byebug
-
-
-        if @push.save
-          redirect_to @push, notice: 'Push created.'
-        else
+        if !push_params[:message]  || !push_params[:content]
             redirect_to :new 
+
+        else
+    
+            @push = Push.new
+
+            @push.repo_id = push_params[:repo_id]
+            @push.user_id = current_user.id
+
+            @push.message = push_params[:message]
+            @push.content = push_params[:content]
+
+           # byebug
+
+
+            if @push.save
+                redirect_to @push, notice: 'Push created.'
+            else
+                render :new 
+            end
         end
 
     end

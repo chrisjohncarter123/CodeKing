@@ -1,5 +1,5 @@
 class Repo < ApplicationRecord
-    has_many :pushes
+    has_many :pushes, dependent: :delete_all
     has_many :users, through: :pushes
     validates :name, presence: true, uniqueness: true
 

@@ -6,7 +6,7 @@
         <li><%= link_to "Push Index", repo_pushes_path(repo) %></li>
         <li><%= link_to 'Show', repo %></li>
         <li><%= link_to 'Edit', edit_repo_path(repo) %></li>
-        <li><%= link_to 'Destroy', repo, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+        
         <li><em>All Pushes:</em> </li>
     
         <% Push.all.where(repo_id: repo.id).each do |push| %>

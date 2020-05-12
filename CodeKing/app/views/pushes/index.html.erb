@@ -1,5 +1,9 @@
-<h1>Push Index for Repo <%= @repo.name %></h1>
 
+<%if @repo%>
+
+    <h1>Push Index for Repo <%= @repo.name %></h1>
+
+<%end%>
 
 <ul>
 <% @pushes.each do |push| %>

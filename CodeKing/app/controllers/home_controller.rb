@@ -3,8 +3,8 @@ class HomeController < ApplicationController
 
   def index
 
-    @created_repos = created_repos#OLD: Repo.where(creator_id: current_user.id)
-    @created_pushes = created_pushes#OLD: Push.where(user_id: current_user.id)
+    @created_repos = created_repos
+    @created_pushes = created_pushes
 
   end
 end
