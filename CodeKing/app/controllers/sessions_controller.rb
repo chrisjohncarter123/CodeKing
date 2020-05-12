@@ -25,15 +25,13 @@ class SessionsController < ApplicationController
     else
       #omniauth login
 
-      @user = User.find_or_create_by(uid: auth['uid']) do |u|
+      @user = User.find_or_create_by(id: auth['uid']) do |u|
         u.name = auth['info']['name']
         u.email = auth['info']['email']
-        u.image = auth['info']['image']
       end
    
       session[:user_id] = @user.id
-   
-      render 'welcome/home'
+      redirect_to root_url, notice: "Welcome back!"
 
 
     end
