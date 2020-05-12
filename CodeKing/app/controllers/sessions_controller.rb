@@ -7,26 +7,46 @@ class SessionsController < ApplicationController
 
   def create
 
-    user = User.find_by_email(params[:email])
+    if(auth['uid'].nil?)
+      #normal login
 
-   # if(!user)
-      #redirect_to login_path
-   #   flash.now[:alert] = "Invalid credentials."
-    #  render "new"
-    if(!(User.find_by_email(params[:email])))
-      redirect_to login_path, notice: "Invalid credentials."
+      user = User.find_by_email(params[:email])
 
-    elsif(!user.authenticate(params[:password]))
-      flash.now[:alert] = "Invalid credentials."
-      redirect_to login_path
+      if(!(User.find_by_email(params[:email])))
+        redirect_to login_path, notice: "Invalid credentials."
+      elsif(!user.authenticate(params[:password]))
+        flash.now[:alert] = "Invalid credentials."
+        redirect_to login_path
+      else
+        session[:user_id] = user.id
+        redirect_to root_url, notice: "Welcome back!"
+      end
+
     else
-      session[:user_id] = user.id
-      redirect_to root_url, notice: "Welcome back!"
+      #omniauth login
+
+      @user = User.find_or_create_by(uid: auth['uid']) do |u|
+        u.name = auth['info']['name']
+        u.email = auth['info']['email']
+        u.image = auth['info']['image']
+      end
+   
+      session[:user_id] = @user.id
+   
+      render 'welcome/home'
+
+
     end
 
   end
   def destroy
     session[:user_id] = nil
     redirect_to login_path, notice: "Goodbye for now."
+  end
+
+  private 
+
+  def auth
+    request.env['omniauth.auth']
   end
 end
