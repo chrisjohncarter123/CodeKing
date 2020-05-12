@@ -20,4 +20,7 @@ Rails.application.routes.draw do
   #pushes
   resources :pushes, only: [:show, :index, :new, :create]
 
+  #omniauth
+  match '/auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
+
 end
