@@ -1,8 +1,9 @@
 
 <%= form_with(model: @repo, local: true) do |form| %>
 
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+   <%= render 'partials/basic_field', form:form, base: @repo, field: :name %>
 
+    <p>
     <%= form.submit %>
+    </p>
 <% end %>
