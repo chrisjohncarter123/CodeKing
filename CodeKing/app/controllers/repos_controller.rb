@@ -9,7 +9,9 @@ class ReposController < ApplicationController
             redirect_to new_user_path
         end
 
-        @created_repos = created_repos
+       # @created_repos = created_repos
+
+        @repos = Repo.where(name: params[:search])
         
     end
     def new
@@ -65,8 +67,11 @@ class ReposController < ApplicationController
 
 
     def repo_params
-        params.require(:repo).permit(:name)
+        params.require(:repo).permit(:search)
+        #params.require(:repo).permit(:name. :search)
     end
 
     
 end
+
+

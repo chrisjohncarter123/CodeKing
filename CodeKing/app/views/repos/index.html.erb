@@ -1,28 +1,23 @@
 
-<h1>All Repos Created by You:</h1>
 
-<ul>
-    <% @created_repos.each do |repo| %>
-        <%= render 'repo', repo: repo %>
-    <% end %>
-</ul>
-
-<%= link_to 'New Repo', new_repo_path %>
 
 <h2>Search All Global Repos:</h2>
-
+<%if @repos.count == 0%>
+    <h2>No repos found.</h2>
+<%else %>
+    <ul>
+        <% @repos.each do |repo| %>
+            <%= render 'repos/repo', repo: repo %>
+            <li><%= link_to 'Destroy', repo, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+        <% end %>
+    </ul>
+<%end%>
 
 <%= form_tag(repos_path, method: :get) do %>
     <%= text_field_tag(:search, params[:search]) %>
     <%= submit_tag("Search") %>
 
 <% end %>
-
-<ul>
-    <% @repos.each do |repo| %>
-        <%= render 'repo', repo: repo %>
-    <% end %>
-</ul>
 
 
 
