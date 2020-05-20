@@ -7,18 +7,23 @@
     <% end %>
 </ul>
 
-
+<%= link_to 'New Repo', new_repo_path %>
 
 <h2>Search All Global Repos:</h2>
 
-<%= form_tag(repos_path, method: :get) %>
-<%= text_field_tag(:search, params[:search]) %>
-<%= submit_tag("Search") %>
-<% end %>
 
-<%= @repos.each do |repo| %>
-
+<%= form_tag(repos_path, method: :get) do %>
+    <%= text_field_tag(:search, params[:search]) %>
+    <%= submit_tag("Search") %>
 
 <% end %>
 
-<%= link_to 'New Repo', new_repo_path %>
+<ul>
+    <% @repos.each do |repo| %>
+        <%= render 'repo', repo: repo %>
+    <% end %>
+</ul>
+
+
+
+

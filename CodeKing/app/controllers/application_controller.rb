@@ -25,4 +25,8 @@ class ApplicationController < ActionController::Base
   def created_pushes
     return Push.where(user_id: current_user.id)
   end
+
+  def logged_in
+    return (session.include? :user_id) == true
+  end
 end

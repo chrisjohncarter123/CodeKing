@@ -3,11 +3,17 @@ class SessionsController < ApplicationController
   skip_before_action :require_login, only: [:new, :create]
 
   def new
+    if logged_in
+      redirect_to root_path
+    end
   end
 
   def create
 
-    if auth_hash = request.env["omniauth.auth"]
+    if logged_in
+      redirect_to root_path
+    
+    elsif auth_hash = request.env["omniauth.auth"]
       #logged in with omniauth
 
 
@@ -30,9 +36,6 @@ class SessionsController < ApplicationController
           raise user.errors.full_message.inspect
         end
       end
-
-
-      
 
     else
       #normal login with username and password
