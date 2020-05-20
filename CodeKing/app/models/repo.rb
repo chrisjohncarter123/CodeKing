@@ -9,7 +9,7 @@ class Repo < ApplicationRecord
 
     end
 
-    scope :named, -> (name) {where("name LIKE ?", name)
+    scope :named, -> (name) {where("name LIKE ?", name)}
     def named(name)
         where("name LIKE ?", name)
     end
