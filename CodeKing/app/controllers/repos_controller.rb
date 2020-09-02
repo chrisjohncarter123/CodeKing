@@ -27,6 +27,7 @@ class ReposController < ApplicationController
         if @repo.save
           redirect_to @repo, notice: 'Repo created.'
         else
+            puts repo_params
           render :new 
         end
 
@@ -67,7 +68,7 @@ class ReposController < ApplicationController
 
 
     def repo_params
-        params.require(:repo).permit(:search)
+        params.require(:repo).permit(:name, :search)
         #params.require(:repo).permit(:name. :search)
     end
 
