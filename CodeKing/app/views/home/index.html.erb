@@ -1,5 +1,8 @@
 
 <h1>Welcome Home, <%= current_user.get_email_base %></h1>
+
+<%= render 'partials/repo_search' %>
+
 <h3><%= link_to 'New Repo', new_repo_path %></h3>
 
 <h2>Public Repos Created by All Users (name is 'a'):</h2>
